@@ -13,10 +13,10 @@ const defaultOpts = {
   libraryName: 'au-ui',
   style (name) {
     return false
-    // return `au-ui/packages/${transformName(name)}/${transformName(name)}.css`
+    // return `${defaultOpts.libraryName}/packages/${transformName(name)}/${transformName(name)}.css`
   },
   customName (name) {
-    return `au-ui/packages/${transformName(name)}`
+    return `${defaultOpts.libraryName}/packages/${transformName(name)}`
   }
 }
 
@@ -35,13 +35,10 @@ module.exports = function ({ type }) {
               const { imported: { name: importedName }, local: { name: localName } } = item
               if (!importedName || !localName) return
               if (path.scope.getBinding(localName).references === 0) return
-              imports.push(
-                t.importDeclaration([t.importDefaultSpecifier(t.identifier(localName))], t.StringLiteral(defaultOpts.customName(importedName)))
-              )
+              imports.push(t.importDeclaration([t.importDefaultSpecifier(t.identifier(localName))], t.StringLiteral(defaultOpts.customName(importedName))))
               // css
               if (typeof defaultOpts.style === 'function' && defaultOpts.style(importedName)) {
-                imports.push(t.importDeclaration([], t.StringLiteral(defaultOpts.style(importedName)))
-                )
+                imports.push(t.importDeclaration([], t.StringLiteral(defaultOpts.style(importedName))))
               }
             }
           })

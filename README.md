@@ -13,3 +13,35 @@
 }
 
 ```
+
+### 可加参数
+
+```js
+{
+  libraryName: 'au-ui', // 引入的组件库名
+  style (name) { // 引入的样式，若返回false，则不引入css
+    return `au-ui/packages/${name}/${name}.css`
+  },
+  customName (name) { // 引入的组件
+    return `au-ui/packages/${name}`
+  }
+}
+```
+
+```js
+// babel.config.js
+module.exports = {
+  plugins: [
+    [
+      "babel-plugin-au-import",
+      {
+        libraryName: 'au-ui', // 引入的组件库名
+        style (name) => flase,
+        customName (name) { // 引入的组件
+          return `au-ui/packages/${name}`
+        }
+      }
+    ]
+  ]
+}
+```
