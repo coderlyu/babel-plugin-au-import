@@ -14,7 +14,8 @@ function transformName (n) {
 const defaultOpts = {
   libraryName: 'au-ui',
   style (name) {
-    return `au-ui/packages/${transformName(name)}/${transformName(name)}.css`
+    return false
+    // return `au-ui/packages/${transformName(name)}/${transformName(name)}.css`
   },
   customName (name) {
     return `au-ui/packages/${transformName(name)}`
