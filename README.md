@@ -4,6 +4,8 @@
 
 ## 使用
 
+安装 `npm install babel-plugin-au-import -D`
+
 ```js
 // .babelrc
 {
